@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Do NOT use this, because the CF worker will cause a 525 SSL error
 
 export async function GET(request: NextRequest): Promise<Response> {
   const referrer = request.headers.get("referer");
