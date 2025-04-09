@@ -10,12 +10,12 @@ export async function GET(request: NextRequest): Promise<Response> {
       const referrerUrl = new URL(referrer);
       const hostname = referrerUrl.hostname;
 
-      if (hostname !== "localhost" && !hostname.endsWith(".datocms.com")) {
-        return new NextResponse("Invalid referrer", { status: 400 });
+      if (hostname !== "localhost" && !hostname.endsWith(".datocms.com") && hostname !== "datocms-translate-plugin.netlify.app") {
+        return new NextResponse("Invalid referrer", { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
       }
     }
   } catch (error) {
-    return new NextResponse("Invalid referrer", { status: 400 });
+    return new NextResponse("Invalid referrer", { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   const { searchParams } = request.nextUrl;
